@@ -10,7 +10,7 @@ $annonce = $annonce ?? ['titre' => '', 'id' => 0];
     <p style="color: red;"><?= htmlspecialchars($error) ?></p>
 <?php endforeach; ?>
 
-<form method="post">
+<form method="post" class="panel">
     <label>Message de motivation :<br>
         <textarea name="message" rows="4" cols="40"><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
     </label><br>

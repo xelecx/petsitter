@@ -9,7 +9,7 @@ $errors = $errors ?? [];
     <p style="color: red;"><?= htmlspecialchars($error) ?></p>
 <?php endforeach; ?>
 
-<form method="post">
+<form method="post" class="panel">
     <label>Email : <input type="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"></label><br>
     <label>Mot de passe : <input type="password" name="password"></label><br>
     <button type="submit">Se connecter</button>

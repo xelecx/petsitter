@@ -10,7 +10,7 @@
 
 <nav class="navbar">
     <div class="navbar-inner">
-        <a href="/petsitter/public/annonces" class="navbar-brand">🐾 PetSitter</a>
+        <a href="/petsitter/public/annonces" class="navbar-brand">PetSitter</a>
         <div class="navbar-links">
             <a href="/petsitter/public/annonces">Annonces</a>
             <?php if (isset($_SESSION['user_id'])): ?>

@@ -10,7 +10,7 @@ $idAnnonce = $idAnnonce ?? 0;
     <p style="color: red;"><?= htmlspecialchars($error) ?></p>
 <?php endforeach; ?>
 
-<form method="post">
+<form method="post" class="panel">
     <input type="hidden" name="id_annonce" value="<?= (int) $idAnnonce ?>">
 
     <p>Note :
