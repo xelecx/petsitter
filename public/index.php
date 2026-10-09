@@ -44,5 +44,9 @@ $router->add('avis/noter', 'AvisController', 'noter');
 
 $router->add('admin', 'AdminController', 'dashboard');
 $router->add('admin/supprimer-avis', 'AdminController', 'supprimerAvis');
+$router->add('admin/utilisateurs', 'AdminController', 'utilisateurs');
+$router->add('admin/utilisateurs/role', 'AdminController', 'toggleRole');
+
+$router->add('profil', 'CandidatureController', 'profil');
 
 $router->run();

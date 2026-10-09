@@ -60,4 +60,23 @@ class CandidatureController
         $candidatures = Candidature::findByGardien($_SESSION['user_id']);
         require __DIR__ . '/../views/candidatures/mes_candidatures.php';
     }
+
+    public function profil(): void
+{
+    $this->requireLogin();
+
+    $id = (int) ($_GET['id'] ?? 0);
+    $user = Utilisateur::findById($id);
+
+    if (!$user) {
+        http_response_code(404);
+        echo "Utilisateur introuvable.";
+        return;
+    }
+
+    $noteMoyenne = Avis::noteMoyenne($id);
+    $gardesRealisees = Candidature::countGardesRealisees($id);
+
+    require __DIR__ . '/../views/candidatures/profil.php';
+}
 }

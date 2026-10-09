@@ -8,6 +8,18 @@ $annonces = $annonces ?? [];
     <p><?= count($annonces) ?> annonce(s) publiée(s)</p>
 </div>
 
+<?php $gardesConfiees = $gardesConfiees ?? 0; $gardienTop = $gardienTop ?? null; ?>
+<div class="stats-row">
+    <div class="stat-card">
+        <span class="value"><?= $gardesConfiees ?></span>
+        <span class="label">gardes confiées</span>
+    </div>
+    <div class="stat-card">
+        <span class="value"><?= $gardienTop ? htmlspecialchars($gardienTop['nom']) : '—' ?></span>
+        <span class="label">gardien le plus sollicité</span>
+    </div>
+</div>
+
 <p style="margin-bottom:20px;"><a href="/petsitter/public/annonces/creer" class="btn">+ Publier une annonce</a></p>
 
 <?php if (empty($annonces)): ?>

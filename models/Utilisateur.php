@@ -48,4 +48,25 @@ class Utilisateur
     {
         return self::findByEmail($email) !== null;
     }
+
+    public static function findAll(): array
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->query('SELECT * FROM utilisateurs ORDER BY date_inscription DESC');
+    return $stmt->fetchAll();
+}
+
+public static function updateRole(int $id, string $role): void
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare('UPDATE utilisateurs SET role = :role WHERE id = :id');
+    $stmt->execute(['role' => $role, 'id' => $id]);
+}
+
+public static function delete(int $id): void
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare('DELETE FROM utilisateurs WHERE id = :id');
+    $stmt->execute(['id' => $id]);
+}
 }

@@ -47,12 +47,17 @@ class AnnonceController
     }
 
     public function mesAnnonces(): void
-    {
-        $this->requireLogin();
-        Annonce::autoCloturerExpirees();
-        $annonces = Annonce::findByProprietaire($_SESSION['user_id']);
-        require __DIR__ . '/../views/annonces/mes_annonces.php';
-    }
+{
+    $this->requireLogin();
+    Annonce::autoCloturerExpirees();
+
+    $userId = (int) $_SESSION['user_id'];
+    $annonces = Annonce::findByProprietaire($userId);
+    $gardesConfiees = Annonce::countGardesConfiees($userId);
+    $gardienTop = Candidature::gardienLePlusSollicite($userId);
+
+    require __DIR__ . '/../views/annonces/mes_annonces.php';
+}
 
     public function liste(): void
 {

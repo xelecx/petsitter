@@ -98,4 +98,14 @@ public static function countTerminees(): int
     return (int) $stmt->fetchColumn();
 }
 
+public static function countGardesConfiees(int $idProprietaire): int
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare(
+        "SELECT COUNT(*) FROM annonces WHERE id_proprietaire = :id AND statut IN ('pourvue', 'terminee')"
+    );
+    $stmt->execute(['id' => $idProprietaire]);
+    return (int) $stmt->fetchColumn();
+}
+
 }                      

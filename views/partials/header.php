@@ -16,8 +16,10 @@
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="/petsitter/public/annonces/mes-annonces">Mes annonces</a>
                 <a href="/petsitter/public/candidatures/mes-candidatures">Mes candidatures</a>
+                <a href="/petsitter/public/profil?id=<?= (int) $_SESSION['user_id'] ?>">Mon profil</a>
                 <?php if (($_SESSION['user_role'] ?? '') === 'admin'): ?>
-                    <a href="/petsitter/public/admin">Admin</a>
+                    <a href="/petsitter/public/admin">Avis &amp; stats</a>
+                    <a href="/petsitter/public/admin/utilisateurs">Comptes</a>
                 <?php endif; ?>
                 <a href="/petsitter/public/logout" class="btn-logout">Déconnexion</a>
             <?php else: ?>

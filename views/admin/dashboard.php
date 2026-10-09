@@ -6,6 +6,8 @@ $avis = $avis ?? [];
 
 <h1>Espace Admin</h1>
 
+<p><a href="/petsitter/public/admin/utilisateurs" class="btn">Gérer les comptes</a></p>
+
 <h2>Statistiques globales</h2>
 <ul>
     <li>Gardes realisees : <?= (int) $stats['gardesRealisees'] ?></li>

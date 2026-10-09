@@ -88,5 +88,37 @@ public static function findByGardien(int $idGardien): array
     );
     $stmt->execute(['id_gardien' => $idGardien]);
     return $stmt->fetchAll();
+
 }
+
+public static function gardienLePlusSollicite(int $idProprietaire): ?array
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare(
+        'SELECT u.nom, COUNT(*) AS nb
+         FROM candidatures c
+         JOIN annonces a ON a.id = c.id_annonce
+         JOIN utilisateurs u ON u.id = c.id_gardien
+         WHERE a.id_proprietaire = :id AND c.statut = "acceptee"
+         GROUP BY c.id_gardien
+         ORDER BY nb DESC
+         LIMIT 1'
+    );
+    $stmt->execute(['id' => $idProprietaire]);
+    $result = $stmt->fetch();
+    return $result ?: null;
+}
+
+public static function countGardesRealisees(int $idGardien): int
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare(
+        "SELECT COUNT(*) FROM candidatures c
+         JOIN annonces a ON a.id = c.id_annonce
+         WHERE c.id_gardien = :id AND c.statut = 'acceptee' AND a.statut = 'terminee'"
+    );
+    $stmt->execute(['id' => $idGardien]);
+    return (int) $stmt->fetchColumn();
+}
+
 }

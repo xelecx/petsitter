@@ -21,7 +21,7 @@ $annonce = $annonce ?? ['titre' => '', 'ville' => '', 'type_animal' => '', 'date
     <?php foreach ($candidatures as $c): ?>
         <div class="entry">
             <div class="entry-top">
-                <span class="entry-name"><?= htmlspecialchars($c['gardien_nom']) ?></span>
+                <span class="entry-name"><a href="/petsitter/public/profil?id=<?= $c['gardien_id'] ?>"><?= htmlspecialchars($c['gardien_nom']) ?></a></span>
                 <span class="entry-note">note : <?= Avis::noteMoyenne((int) $c['gardien_id']) ?? 'pas encore noté' ?></span>
                 <span class="badge badge-<?= htmlspecialchars($c['statut']) ?>"><?= htmlspecialchars($c['statut']) ?></span>
             </div>

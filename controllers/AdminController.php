@@ -41,4 +41,25 @@ class AdminController
         header('Location: /petsitter/public/admin');
         exit;
     }
+
+    public function utilisateurs(): void
+{
+    $this->requireAdmin();
+    $utilisateurs = Utilisateur::findAll();
+    require __DIR__ . '/../views/admin/utilisateurs.php';
+}
+
+public function toggleRole(): void
+{
+    $this->requireAdmin();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = (int) ($_POST['id'] ?? 0);
+        $nouveauRole = ($_POST['role_actuel'] ?? 'user') === 'admin' ? 'user' : 'admin';
+        Utilisateur::updateRole($id, $nouveauRole);
+    }
+
+    header('Location: /petsitter/public/admin/utilisateurs');
+    exit;
+}
 } 
